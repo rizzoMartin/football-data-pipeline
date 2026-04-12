@@ -65,7 +65,7 @@ with DAG(
     dag_id="football_pipeline",
     description="Pipeline diario de datos de las 5 grandes ligas europeas",
     start_date=datetime(2024, 1, 1),
-    schedule="@daily",
+    schedule="40 23 * * *",
     catchup=False
 ) as dag:
 
