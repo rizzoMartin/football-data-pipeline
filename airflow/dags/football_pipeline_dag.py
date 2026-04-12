@@ -71,28 +71,28 @@ with DAG(
 
     bronze = PythonOperator(
         task_id="ingest_bronze",
-        python_callable=run_bronze
+        python_callable=run_bronze,
         retries=2,
         retry_delay=timedelta(minutes=5)
     )
 
     check = ShortCircuitOperator(
         task_id="check_matches",
-        python_callable=check_matches
+        python_callable=check_matches,
         retries=2,
         retry_delay=timedelta(minutes=5)
     )
 
     silver = PythonOperator(
         task_id="transform_silver",
-        python_callable=run_silver
+        python_callable=run_silver,
         retries=2,
         retry_delay=timedelta(minutes=5)
     )
 
     gold = PythonOperator(
         task_id="compute_gold",
-        python_callable=run_gold
+        python_callable=run_gold,
         retries=2,
         retry_delay=timedelta(minutes=5)
     )
