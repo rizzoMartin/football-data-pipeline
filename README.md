@@ -61,7 +61,7 @@ football-pipeline/
 │   │   └── football_pipeline_dag.py   # Airflow DAG
 │   └── docker-compose.yaml
 ├── architecture/
-│   └── architecture.png
+│   └── football_pipeline_architecture.svg
 ├── .gitignore
 └── README.md
 ```
