@@ -1,0 +1,47 @@
+name: Deploy DAGs to homelab
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'airflow/dags/**'
+
+jobs:
+  ci:
+    name: Validate DAGs
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3 
+      
+      - name: Install dependencies
+        run: pip install flake8 apache-airflow
+
+      - name: Lint
+        run: flake8 airflow/dags/ --max-line-length=120
+
+      - name: Validate DAG imports
+        run: |
+          python -c "
+          import sys
+          sys.path.insert(0, 'airflow/dags')
+          import football_pipeline_dag
+          print('DAG importado correctamente')
+          "
+  
+  cd:
+    name: Deploy DAGs
+    runs-on: self-hosted
+    needs: ci
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Copy DAGs to airflow
+        run: |
+          cp airflow/dags/*.py /home/martin/docker/airflow/dags/
+          echo "DAGs desplegados en $(date)"
+      
