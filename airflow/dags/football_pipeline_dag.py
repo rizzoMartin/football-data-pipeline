@@ -1,3 +1,4 @@
+# Football pipeline DAG
 from airflow.sdk import DAG
 from airflow.providers.standard.operators.python import PythonOperator, ShortCircuitOperator
 from airflow.models import Variable
