@@ -14,17 +14,17 @@ jobs:
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3 
+        uses: actions/checkout@v4 
       
       - name: Install dependencies
-        run: pip install flake8 apache-airflow
+        run: pip3 install flake8 apache-airflow
 
       - name: Lint
         run: flake8 airflow/dags/ --max-line-length=120
 
       - name: Validate DAG imports
         run: |
-          python -c "
+          python3 -c "
           import sys
           sys.path.insert(0, 'airflow/dags')
           import football_pipeline_dag
@@ -38,7 +38,7 @@ jobs:
 
     steps:
       - name: Checkout repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Copy DAGs to airflow
         run: |
