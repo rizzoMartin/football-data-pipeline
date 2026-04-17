@@ -3,7 +3,7 @@ name: Deploy DAGs to homelab
 on:
   push:
     branches:
-      - main
+      - master
     paths:
       - 'airflow/dags/**'
 
