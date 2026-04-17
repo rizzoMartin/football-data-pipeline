@@ -21,7 +21,7 @@ jobs:
         run: |
           python3 -m venv /home/martin/docker/actions-runner/venv
           source /home/martin/docker/actions-runner/venv/bin/activate
-          pip install flake8 apache-airflow
+          pip install flake8 apache-airflow databricks-sdk
 
       - name: Lint
         run: |
